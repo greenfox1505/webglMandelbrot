@@ -1,0 +1,86 @@
+<html>
+
+<head>
+	<title>Cannon and ThreeJS</title>
+	<style>
+		body {
+			margin: 0;
+		}
+		
+		canvas {
+			width: 100%;
+			height: 100%
+		}
+		
+		#frameRate {
+			margin: 0px;
+			position: absolute;
+			left: 10;
+			top: 10;
+			color: white;
+			text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+		}
+	</style>
+</head>
+
+<body>
+	<script id="vertexShader" type="x-shader/x-vertex">
+		
+varying vec2 vUV;
+ 
+void main() {
+ 
+    vUV = uv;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+ 
+}  
+    
+	</script>
+	<script id="fragmentShader" type="x-shader/x-fragment">
+		//todo seperate file
+		#define runs 100
+		varying vec2 vUV;
+
+		uniform vec3 color;
+		uniform vec2 botLeft;
+		uniform vec2 size;
+		
+		//z(n)= z(n-1)^2 +c
+		//if(z(n) > 2, break
+		
+		// (a+bi)^2
+		// a^2-b^2 + 2(a*bi)
+		
+		vec2 iSqr(vec2 i){
+			return vec2( (i.x * i.x) - (i.y *i.y),2.0*(i.x*i.y));
+		}
+		float iABS2(vec2 i){
+			return (i.x * i.x) +(i.y* i.y);
+		}
+		int mend(){
+			vec2 c = (vUV * size) + botLeft;
+			vec2 z = c;
+			for(int i = 0; i < runs; i++){
+				z = iSqr(z) + c;
+				if(iABS2(z)>4.0){
+					return i;
+				}
+			}
+		
+			return 0;
+		}
+		
+		void main() {
+			float n = float(mend())/float(runs);
+			
+		
+		    gl_FragColor = vec4(0,n,n,1.);
+		 
+		}
+    
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.min.js"></script>
+	<script src="main.js"></script>
+</body>
+
+</html>
