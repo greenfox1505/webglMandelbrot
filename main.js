@@ -44,6 +44,20 @@ scene.add(cube);
 
 camera.position.z = 1;
 
+var setURL = function(){
+	var i = window.location.origin + window.location.pathname +"?x="+n.center.x+
+		"&y="+n.center.y+
+		"&z="+n.zoom;
+		console.log(i)
+	window.history.replaceState( {} , "",i );
+
+}
+var move = function(input){
+	n.center.x = input.x
+	n.center.y = input.y
+	n.zoom = input.z;
+}
+
 var n = {
 	center: new THREE.Vector2(-0.75, 0),
 	zoom: 20
@@ -64,7 +78,7 @@ var render = function() {
 
 document.onmousewheel = function(event) {
 	n.zoom += event.deltaY / 100;
-	console.log(Math.pow(1.05, n.zoom))
+		setURL(n);
 }
 document.onmousemove = function(event) {
 	if (event.buttons == 1) {
@@ -75,9 +89,36 @@ document.onmousemove = function(event) {
 		}
 		n.center.x -= delta.dx*z
 		n.center.y += delta.dy*z
-
-		console.log(delta)
+		setURL(n);
 	}
 }
 
 render();
+
+
+
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+
+
+
+
+var param = getUrlVars();
+//debugger;
+if(param.x){
+
+	n.center.x = parseFloat(param.x);
+}
+if(param.y){
+	n.center.y =parseFloat(param.y);
+}
+if(param.z){
+	n.zoom= parseFloat(param.z);
+}
