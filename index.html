@@ -20,8 +20,15 @@
 			color: white;
 			text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 		}
+		#controls{
+			position: absolute;
+			left:10;
+			top:10;
+			color:white;
+		}
 	</style>
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5.1/dat.gui.js"></script>
 </head>
 
 <body>
@@ -78,22 +85,12 @@ void main() {
 
 		void main() {
 			float n = float(mend())/(float(runs)/2.0);
-			// int n = modulo(mend(),4);
-			// if(n == 0){
-			// 	gl_FragColor = vec4(0,1,0,0);
-			// }
-			// else if(n == 1){
-			// 	gl_FragColor = vec4(0,0,0,0);
-			// }
-			// else if(n == 2){
-			// 	gl_FragColor = vec4(1,0,1,0);
-			// }
-			// else if(n == 3){
-			// 	gl_FragColor = vec4(1,1,1,0);
-			// }
-		
-		    gl_FragColor = vec4(n-1.,n,n,1.);
-		 
+			if(n>1.0){
+				gl_FragColor = vec4((n-1.)+color.x,(n-1.)+color.y,(n-1.)+color.z,1.);
+			}
+			else{
+				gl_FragColor = vec4(color.x*n,color.y*n,color.z*n,1.0);
+			}
 		}
     
 	</script>
