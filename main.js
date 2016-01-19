@@ -33,8 +33,8 @@ var uniforms = {
 var geometry = new THREE.PlaneGeometry(5, 5);
 var material = new THREE.ShaderMaterial({
 	uniforms: uniforms,
-	vertexShader: document.getElementById('vertexShader').textContent,
-	fragmentShader: document.getElementById('fragmentShader').textContent
+	vertexShader: shader.vert,
+	fragmentShader: shader.frag
 
 });
 
