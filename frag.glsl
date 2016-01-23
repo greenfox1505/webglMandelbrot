@@ -1,6 +1,9 @@
 //todo seperate file
 #define runs 512
-varying vec2 vUV;
+//varying vec2 vUV;
+
+
+varying vec2 c;
 
 uniform vec3 color;
 uniform vec2 botLeft;
@@ -14,7 +17,7 @@ float iABS2(vec2 i){
 	return (i.x * i.x) +(i.y* i.y);
 }
 int mend(){
-	vec2 c = (vUV * size) + botLeft;
+	//vec2 c = (vUV * size) + botLeft;
 	vec2 z = c;
 	for(int i = 0; i < runs; i++){
 		z = iSqr(z) + c;
