@@ -1,5 +1,16 @@
 /*global THREE requestAnimationFrame*/
 
+var stats = new Stats();
+stats.setMode( 1 ); // 0: fps, 1: ms, 2: mb
+
+// align top-left
+stats.domElement.style.position = 'absolute';
+stats.domElement.style.left = '0px';
+stats.domElement.style.top = '0px';
+
+document.body.appendChild( stats.domElement );
+
+
 console.log("test")
 var width = 5;
 var height = 5;
@@ -11,6 +22,7 @@ var renderer = new THREE.WebGLRenderer();
 
 window.onresize = function() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
+	renderer.domElement.setAttribute("id","renderer")
 	document.body.appendChild(renderer.domElement);
 }
 window.onresize()
@@ -66,6 +78,9 @@ var n = {
 
 
 var render = function() {
+	stats.end();stats.begin();
+
+	
 	var z = Math.pow(1.05, n.zoom);
 	uniforms.botLeft.value = {
 		x: n.center.x - z / 2,
@@ -75,6 +90,8 @@ var render = function() {
 
 	renderer.render(scene, camera);
 	requestAnimationFrame(render);
+	
+
 };
 
 renderer.domElement.onmousewheel = function(event) {
@@ -153,3 +170,5 @@ gui.add(myCont,"green",0,1).onChange(myCont.loadColor);
 gui.add(myCont,"blue",0,1).onChange(myCont.loadColor);
 
 //gui.add(myCont, 'loadColor');
+
+
