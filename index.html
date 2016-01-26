@@ -1,0 +1,40 @@
+<html>
+
+<head>
+	<title>Mandelbrot in WebGL</title>
+	<style>
+		body {
+			margin: 0;
+		}
+		
+		canvas {
+			width: 100%;
+			height: 100%
+		}
+		
+		#frameRate {
+			margin: 0px;
+			position: absolute;
+			left: 10;
+			top: 10;
+			color: white;
+			text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+		}
+		#controls{
+			position: absolute;
+			left:10;
+			top:10;
+			color:white;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5.1/dat.gui.js"></script>
+	<script src="./shader.js"></script>
+</head>
+
+<body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.min.js"></script>
+	<script src="main.js"></script>
+</body>
+
+</html>

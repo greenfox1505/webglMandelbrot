@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>Cannon and ThreeJS</title>
+	<title>Mandelbrot in WebGL</title>
 	<style>
 		body {
 			margin: 0;
@@ -38,19 +38,14 @@ void main() {
 	</script>
 	<script id="fragmentShader" type="x-shader/x-fragment">
 		//todo seperate file
-		#define runs 100
+		#define runs 512
 		varying vec2 vUV;
 
 		uniform vec3 color;
 		uniform vec2 botLeft;
 		uniform vec2 size;
 		
-		//z(n)= z(n-1)^2 +c
-		//if(z(n) > 2, break
-		
-		// (a+bi)^2
-		// a^2-b^2 + 2(a*bi)
-		
+
 		vec2 iSqr(vec2 i){
 			return vec2( (i.x * i.x) - (i.y *i.y),2.0*(i.x*i.y));
 		}
@@ -69,12 +64,34 @@ void main() {
 		
 			return 0;
 		}
-		
+		int modulo(int a, int b){
+			for ( int i = 0; i < runs; ++i )
+    		{
+				a=a-b;
+				if(a<b){
+					return a;
+				}
+    		}
+    		return 0;
+		}
+
 		void main() {
-			float n = float(mend())/float(runs);
-			
+			//float n = float(mend())/(float(runs)/2.0);
+			int n = modulo(mend(),4);
+			if(n == 0){
+				gl_FragColor = vec4(0,1,0,0);
+			}
+			else if(n == 1){
+				gl_FragColor = vec4(0,0,0,0);
+			}
+			else if(n == 2){
+				gl_FragColor = vec4(1,0,1,0);
+			}
+			else if(n == 3){
+				gl_FragColor = vec4(1,1,1,0);
+			}
 		
-		    gl_FragColor = vec4(0,n,n,1.);
+		    //gl_FragColor = vec4(n-1.,n,n,1.);
 		 
 		}
     
