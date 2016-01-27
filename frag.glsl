@@ -1,5 +1,5 @@
 //todo seperate file
-#define runs 512
+//#define runs 512
 //varying vec2 vUV;
 
 

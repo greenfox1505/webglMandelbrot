@@ -4,6 +4,7 @@ varying vec2 c;
  
 uniform vec2 botLeft;
 uniform vec2 size;
+uniform float asp;
  
 void main() {
     c = botLeft + (uv * size);
