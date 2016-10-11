@@ -3,7 +3,7 @@ Simple Mandelbrot in as a webgl shader
 
 TODO LIST:
 
- 0.~~Fix this todolist to fit Markdown format~~
+ 0. ~~Fix this todolist to fit Markdown format~~
  1. regl
  2. screenshot mode
  3. color OR texture options
