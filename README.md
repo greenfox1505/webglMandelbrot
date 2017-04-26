@@ -1,6 +1,8 @@
 # webglMandelbrot
 Simple Mandelbrot in as a webgl shader
 
+Live demo: http://ghp.ryanleverenz.net/webglMandelbrot/
+
 TODO LIST:
 
  0. ~~Fix this todolist to fit Markdown format~~
