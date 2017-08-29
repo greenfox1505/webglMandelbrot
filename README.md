@@ -1,7 +1,7 @@
 # webglMandelbrot
 Simple Mandelbrot in as a webgl shader
 
-Live demo: http://ghp.ryanleverenz.net/webglMandelbrot/
+Live demo: https://greenfox1505.github.io/webglMandelbrot
 
 TODO LIST:
 
